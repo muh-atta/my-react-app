@@ -16,7 +16,8 @@ import Register from '../pages/Register'
 import Footer from '../components/Footer'
 import Dashboard from '../Dashboard'
 import ProtectedRoute from '../ProtectedRoute'
-import { AuthProvider, useAuth } from '../AuthContext'
+import { AuthProvider } from '../AuthContext'
+import Logout from '../pages/Logout'
 
 const AppRouter = () => {
   return (
@@ -32,6 +33,7 @@ const AppRouter = () => {
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<ContactUs />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/logout" element={<Logout />} />
             <Route
               path="/dashboard"
               element={
