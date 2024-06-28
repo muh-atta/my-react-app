@@ -18,6 +18,7 @@ import Dashboard from '../Dashboard'
 import ProtectedRoute from '../ProtectedRoute'
 import { AuthProvider } from '../AuthContext'
 import Logout from '../pages/Logout'
+import UsersPage from '../pages/UsersPage'
 
 const AppRouter = () => {
   return (
@@ -39,6 +40,14 @@ const AppRouter = () => {
               element={
                 <ProtectedRoute>
                   <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/users"
+              element={
+                <ProtectedRoute>
+                  <UsersPage />
                 </ProtectedRoute>
               }
             />
