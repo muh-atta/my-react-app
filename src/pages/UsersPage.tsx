@@ -3,26 +3,22 @@ import UserTable from '../components/UserTable'
 import axiosInstance from '../axiosInstance'
 import React, { useEffect, useState } from 'react'
 
-const fetchData = async () => {
-  try {
-    const users = await axiosInstance.get('/user')
-    return users.data.users
-  } catch (error) {
-    console.error('Error', error)
-  }
-}
-
 const UsersPage: React.FC = () => {
   const [users, setUsers] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    const getUsers = async () => {
-      const data = await fetchData()
-      setUsers(data)
+  const fetchData = async () => {
+    try {
+      const dataReturned = await axiosInstance.get('/user')
+      setUsers(dataReturned.data.users)
       setLoading(false)
+    } catch (error) {
+      console.error('Error', error)
     }
-    getUsers()
+  }
+
+  useEffect(() => {
+    fetchData()
   }, [])
 
   /*
@@ -42,7 +38,7 @@ const UsersPage: React.FC = () => {
     console.error('Error', error)
   }
 */
-  return <UserTable users={users} />
+  return <UserTable users={users} refreshUsers={fetchData} />
 }
 
 export default UsersPage
